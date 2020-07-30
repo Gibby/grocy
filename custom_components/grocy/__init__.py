@@ -182,7 +182,7 @@ class GrocyData:
 
     async def async_update_data(self, sensor_type):
         """Update data."""
-        sensor_update = self.sensor_update_dict[sensor_type]        
+        sensor_update = self.sensor_update_dict[sensor_type]
         db_changed = await self.hass.async_add_executor_job(self.client.get_last_db_changed)
         if db_changed != sensor_update:
             self.sensor_update_dict[sensor_type] = db_changed
@@ -195,7 +195,7 @@ class GrocyData:
         """Update data."""
         # This is where the main logic to update platform data goes.
         self.hass.data[DOMAIN_DATA][STOCK_NAME] = (
-            await self.hass.async_add_executor_job(self.client.stock, [True]))
+            await self.hass.async_add_executor_job(self.client.stock))
 
     @Throttle(MIN_TIME_BETWEEN_UPDATES)
     async def async_update_chores(self):
